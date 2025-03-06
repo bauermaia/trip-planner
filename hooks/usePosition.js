@@ -11,7 +11,7 @@ export function usePosition() {
     
     function error () {
         setPositionError('No se pudo obtener la ubicación actual del usuario❌')
-        setPosition([40.4168, -3.7038])
+        setPosition({lat:40.4168, lon: -3.7038})
         setCitySearch('Madrid');
     }
 
@@ -19,7 +19,7 @@ export function usePosition() {
     {
         const latitude = position.coords.latitude;
         const longitude = position.coords.longitude;
-        setPosition([latitude,longitude])
+        setPosition({lat: latitude,lon: longitude})
         try {
             const actualCityName = await getCityName(latitude, longitude);
             setCitySearch(actualCityName);

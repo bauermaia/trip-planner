@@ -3,6 +3,7 @@ import {MapContainer, TileLayer, Marker, Popup, useMap, useMapEvents} from "reac
 import "leaflet/dist/leaflet.css"
 import { usePosition } from "../hooks/usePosition";
 
+
 export function Searcher() {
 
     const {position, setPosition, getCoords, getCityName, positionError, setPositionError} = usePosition()
@@ -18,7 +19,7 @@ export function Searcher() {
         if(!citySearch) return;
       const coords = await getCoords(citySearch)
       if(coords) {
-        setPosition([coords.lat, coords.lon])
+        setPosition({lat: coords.lat, lon: coords.lon})
       }
         
     }
@@ -27,7 +28,7 @@ export function Searcher() {
     // FUNCIONES DEL MAPA
     function UpdateMap({position} ) {
         const map= useMap();
-        map.setView(position, 12)
+        map.setView([position.lat, position.lon], 12);
         return null
     }
 
@@ -35,7 +36,7 @@ export function Searcher() {
         useMapEvents({
             click: async (e) => {
                 const {lat, lng }= e.latlng;
-                setPosition([lat, lng]);
+                setPosition({lat, lon: lng});
 
                 try {
                     const cityName = await getCityName(lat,lng)
@@ -64,11 +65,12 @@ export function Searcher() {
 
           { positionError && (<div className="error-message">{positionError}</div>)}
 
-          <MapContainer center={position} zoom={12} style={{ height: "350px", width: "90%"}}>
+          <MapContainer center={[position.lat, position.lon]} zoom={12} style={{ height: "350px", width: "90%" }}>
             <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                     attribution='&copy; OpenStreetMap contributors'/>
             <UpdateMap position={position} />
-            <Marker position={position}><Popup>Ubicación actual</Popup>
+            <Marker position={[position.lat, position.lon]}>
+            <Popup>Ubicación actual</Popup>
             </Marker>
             <ClickHandler setPosition={setPosition} setCitySearch={setCitySearch}/>
           </MapContainer>

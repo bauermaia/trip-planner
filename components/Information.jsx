@@ -39,7 +39,7 @@ export function Information() {
 
     return (
         <section className="information">
-            <h1>Información sobre:{citySearch}</h1>           
+            <h1>Información sobre: {citySearch}</h1>           
   <>
     <p>{cityInfo.description}</p>
     {cityImage && cityImage.length > 0 && (
