@@ -14,12 +14,7 @@ export function Header() {
     return(
         <header>
             <img src="/images/logo.png" alt="" onClick={handleLogoClick} />
-            <nav>
-                <a href="#">Destinos</a>
-                <a href="#">Experiencias</a>
-                <a href="#">Contacto</a>
-                </nav>
-                <button>Reservar</button>
+            <h2>Comienza a planear tu viaje   </h2>
                 </header>
     )
 }

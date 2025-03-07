@@ -2,12 +2,14 @@
 import {MapContainer, TileLayer, Marker, Popup, useMap, useMapEvents} from "react-leaflet";
 import "leaflet/dist/leaflet.css"
 import { usePosition } from "../hooks/usePosition";
+import { useItineraryContext } from "../hooks/useItineraryContext";
 
 
 export function Searcher() {
 
     const {position, setPosition, getCoords, getCityName, positionError, setPositionError} = usePosition()
    const {citySearch, setCitySearch} = usePosition()
+   const {addToItinerary} = useItineraryContext()
     
     const handleSearchChange=(event)=> {
         setCitySearch(event.target.value)
@@ -50,9 +52,10 @@ export function Searcher() {
         return null;
     }
 
+
     return (
         <section className="searcher">
-            <h2>Comienza a planear tu viaje 🛬</h2>
+            <h2>Busca una ciudad</h2>
 
           <form onSubmit={handleSubmit}>
           <input type="text" 
@@ -75,6 +78,7 @@ export function Searcher() {
             <ClickHandler setPosition={setPosition} setCitySearch={setCitySearch}/>
           </MapContainer>
 
+          <button onClick={()=>addToItinerary({name: citySearch, places: []})}>Agregar al itinerario</button>
 
         </section>
     )

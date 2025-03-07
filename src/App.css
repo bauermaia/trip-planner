@@ -48,6 +48,9 @@ h1, h2, h3 {
   font-family: 'Lora', serif;
 }
 
+h2 {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2), 0 0 25px rgba(0, 0, 0, 0.1);;
+}
 /* HEADER */
 
 header {
@@ -127,6 +130,7 @@ button {
   border-radius: 8px;
   cursor: pointer;
   transition: background 0.3s ease-in-out;
+  margin: 10px;
 }
 
 button:hover {
@@ -271,39 +275,12 @@ form{
   max-height: 100%;
   overflow-y: auto; /* Hace la lista desplazable */
   background: var(--background-light);
-  padding: 10px;
   border-radius: 10px;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-
 }
 
-/* LISTA */
-.recomendations-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  padding: 0;
-}
-
-.recomendations-list li {
-  list-style: none;
-  background: white;
-  padding: 1px;
-  border-radius: 8px;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
-  border-bottom: 1px solid var(--secondary-color2);
-  width: 100%;
-  transition: transform ease-in-out 0.5s, background ease-in-out 0.5s;
-}
-
-.recomendations-list li:hover {
-  transform: scale(1.01);
-  background-color: var(--background2-light);
-  border: 1px solid var(--secondary-color2);
-}
-
-.recomendations-list li p{
-  font-size: 0.8rem;
+.recomendations-list-container h6{
+  margin: 0.5rem;
 }
 
 
@@ -314,3 +291,122 @@ form{
   border: solid 1px black;
   border-radius: 10px;
 }
+
+.hotel-searcher{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin: 2rem;
+}
+
+.hotel-searcher input{
+  width: 20%;
+}
+
+.hotel-searcher input[type="number"]{
+  width: 5%;
+}
+
+
+.hotel-searcher input:focus{
+  outline: none; /* Elimina el contorno por defecto */
+  box-shadow: 0 0 10px rgba(0, 0, 255, 0.5); /* Sombra azul, puedes cambiar el color */
+  border: 2px solid #007bff; /* Agrega un borde de color azul (opcional) */
+}
+
+.hotel-results{
+  border: 2px solid var(--primary-color);
+  border-radius: 10px;
+  padding: 2rem;
+  text-align: center;
+}
+
+.itinerary{
+  background: var(--background-light);
+  display: none;
+  padding: 32px;
+  position: fixed;
+  right: 0px;
+  top: 0px;
+  width: 250px;
+  z-index: 100;
+  box-shadow: -9px 11px 49px -18px rgba(0,0,0,0.3);
+  overflow-y: auto;
+  z-index: 10000;
+}
+
+.itinerary p {
+  margin-top:50px ;
+  text-align: center;
+  font-weight:bolder;
+
+}
+
+ul {
+  list-style-type: none; /* Elimina los puntos o números */
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  padding-left: 0;
+  margin-left: 0;
+}
+
+.itinerary li {
+
+  padding-bottom: 16px;
+  background-color: var(--background2-light);
+  padding: 0.5rem;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  border: 2px solid var(--primary-color);
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1) ;
+  }
+
+.itinerary-button{
+  align-items: center;
+  background: var(--accent-color);
+  border-radius: 9999px;
+  cursor: pointer;
+  display: flex;
+  height:3rem;
+  justify-content: center;
+  padding: 4px;
+  position: fixed;
+  right: 8px;
+  top: 8px;
+  transition: all .3s ease;
+  width:3rem;
+  z-index: 999999;
+}
+
+
+.itinerary-button i{
+  font-size: 1.8rem;
+  color: var(--color-border)
+}
+
+.itinerary-button:hover {
+  scale: 1.1;
+}
+
+aside ul{
+  list-style: none;
+  
+}
+
+.itinerary-button ~ input:checked ~ .itinerary {
+  height: 100%;
+  display: block;
+}
+
+.places-item{
+  font-size: 0.8rem;
+}
+.itinerary-item{
+  margin-left: 0;
+ }

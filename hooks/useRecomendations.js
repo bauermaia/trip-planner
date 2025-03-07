@@ -8,7 +8,7 @@ export function useRecomendations() {
     const getRecomendations = async({position})=>{
 
     
-        const RECOMENDATION_ENDPOINT= `https://api.opentripmap.com/0.1/en/places/radius?lat=${position.lat}&lon=${position.lon}&radius=3000&kinds=natural,historic_architecture,cultural,historic&format=json&apikey=5ae2e3f221c38a28845f05b6a29d5d1b714b831ef508e4cb1ce0d228`
+        const RECOMENDATION_ENDPOINT= `https://api.opentripmap.com/0.1/en/places/radius?lat=${position.lat}&lon=${position.lon}&radius=500&kinds=natural,historic_architecture,cultural,historic&format=json&apikey=5ae2e3f221c38a28845f05b6a29d5d1b714b831ef508e4cb1ce0d228`
        try {
         
        const response= await fetch(RECOMENDATION_ENDPOINT) 
@@ -19,7 +19,14 @@ export function useRecomendations() {
             const recomendationsData= data.map(reco=> ({
                 name: reco.name,
                 point: {lat: reco.point.lat, lon: reco.point.lon},
-                category: reco.kinds,
+               // Reemplaza los guiones bajos por espacios
+        // Y usa una expresión regular para agregar espacio entre palabras concatenadas
+        category: reco.kinds
+        .replace(/_/g, " ") // Reemplaza los guiones bajos
+        .replace(/([a-z])([A-Z])/g, "$1 $2") // Añade espacio entre letras minúsculas y mayúsculas
+        .split(",")
+        .map(categ => categ.charAt(0).toUpperCase() + categ.slice(1).toLowerCase()) // Capitaliza la primera letra de cada categoría
+        .filter(categ => categ !== ""), // Elimina categorías vacías,
                 id: reco.xid
         }))
 
