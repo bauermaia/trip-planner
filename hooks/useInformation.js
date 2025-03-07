@@ -1,7 +1,9 @@
 export function useInformation (){
 
+    const USER_NAME = import.meta.env.VITE_USER_NAME;
+    const CLIENT_ID = import.meta.env.VITE_CLIENT_ID;
    const getInfo= async(city) => {
-        const INFORMATION_ENDPOINT = `https://secure.geonames.org/wikipediaSearchJSON?q=${city}&maxRows=1&lang=es&username=bauermaia`
+        const INFORMATION_ENDPOINT = `https://secure.geonames.org/wikipediaSearchJSON?q=${city}&maxRows=1&lang=es&username=${USER_NAME}`
 
         try {
             const response = await fetch(INFORMATION_ENDPOINT);
@@ -26,7 +28,7 @@ export function useInformation (){
     }
 
     const getCityImages = async (city) => {
-        const UNSPLASH_API_URL = `https://api.unsplash.com/search/photos?query=${city}&client_id=YbZCeITp3OSzs-CVhHq8DiN3wgXDw5hiuL1hZOIP4Oo`;
+        const UNSPLASH_API_URL = `https://api.unsplash.com/search/photos?query=${city}&client_id=${CLIENT_ID}`;
     
         try {
             const response = await fetch(UNSPLASH_API_URL);

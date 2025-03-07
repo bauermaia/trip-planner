@@ -2,13 +2,14 @@ import { useState } from "react"
 
 export function useRecomendations() {
 
+    const API_KEY= import.meta.env.API_KEY
     const [recomendations, setRecomendations] = useState([])
 
 
     const getRecomendations = async({position})=>{
 
     
-        const RECOMENDATION_ENDPOINT= `https://api.opentripmap.com/0.1/en/places/radius?lat=${position.lat}&lon=${position.lon}&radius=500&kinds=natural,historic_architecture,cultural,historic&format=json&apikey=5ae2e3f221c38a28845f05b6a29d5d1b714b831ef508e4cb1ce0d228`
+        const RECOMENDATION_ENDPOINT= `https://api.opentripmap.com/0.1/en/places/radius?lat=${position.lat}&lon=${position.lon}&radius=500&kinds=natural,historic_architecture,cultural,historic&format=json&apikey=${API_KEY}`
        try {
         
        const response= await fetch(RECOMENDATION_ENDPOINT) 
